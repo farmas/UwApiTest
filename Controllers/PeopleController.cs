@@ -21,10 +21,17 @@ namespace UwApi.Controllers
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new Person
             {
-                RegId = rng.Next(-20, 55).ToString(),
+                RegId = rng.Next(0, 55).ToString(),
                 Name = Names[rng.Next(Names.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost]
+        public IEnumerable<Person> GetPersonsById(string[] ids) {
+            var rng = new Random();
+            return ids.Select(id => new Person() { RegId = id, Name = Names[rng.Next(Names.Length)]});
+            
         }
     }
 }
