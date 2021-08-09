@@ -36,7 +36,7 @@ namespace UwApi.Controllers
     public IEnumerable<Person> GetPersonsById(string[] ids)
     {
       var rng = new Random();
-      return ids.Select(id => new Person()
+      return ids.Distinct().Select(id => new Person()
       {
         RegId = id,
         DisplayName = $"{FirstNames[rng.Next(FirstNames.Length)]} {LastNames[rng.Next(LastNames.Length)]}"
