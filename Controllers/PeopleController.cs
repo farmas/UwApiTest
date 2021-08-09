@@ -24,10 +24,10 @@ namespace UwApi.Controllers
     public IEnumerable<Person> Get()
     {
       var rng = new Random();
-      return Enumerable.Range(1, 5).Select(index => new Person
+      return Enumerable.Range(1, 50).Select(index => new Person
       {
         RegId = rng.Next(0, 55).ToString(),
-        DisplayName = FirstNames[rng.Next(FirstNames.Length)]
+        DisplayName = $"{FirstNames[rng.Next(FirstNames.Length)]} {LastNames[rng.Next(LastNames.Length)]}"
       })
       .ToArray();
     }
