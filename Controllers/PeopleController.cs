@@ -58,5 +58,20 @@ namespace UwApi.Controllers
 
       return persons;
     }
+
+    [HttpGet("search")]
+    public IEnumerable<Person> GetByQuery([FromQuery] string query)
+    {
+      var rng = new Random();
+      return Enumerable.Range(1, 500)
+        .Select(index => new Person
+          {
+            RegId = rng.Next(0, 55).ToString(),
+            DisplayName = $"{FirstNames[rng.Next(FirstNames.Length)]} {LastNames[rng.Next(LastNames.Length)]}"
+          })
+        .Where(p => p.DisplayName.Contains(query, StringComparison.OrdinalIgnoreCase))
+        .ToArray();
+    }
+
   }
 }
