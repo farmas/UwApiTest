@@ -25,6 +25,7 @@ namespace UwApi.Controllers
     [HttpGet]
     public IEnumerable<Person> Get()
     {
+      System.Diagnostics.Trace.TraceInformation("Getting all persons!");
       var rng = new Random();
       return Enumerable.Range(1, 50).Select(index => new Person
       {
@@ -37,6 +38,8 @@ namespace UwApi.Controllers
     [HttpPost]
     public IEnumerable<Person> GetPersonsById(string[] ids)
     {
+      System.Diagnostics.Trace.TraceInformation("Received ids: " + String.Join(',', ids));
+
       if (ids.Any(id => String.Equals(id, "Error", StringComparison.OrdinalIgnoreCase))) {
         throw new InvalidOperationException("Error from test API");
       }
